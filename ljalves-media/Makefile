@@ -23,6 +23,7 @@ define KernelPackage/ljalves-media
   SUBMENU:=Multimedia
   TITLE:=Multimedia kernel drivers by ljalves
   URL:=https://github.com/ljalves/media_build
+  DEPENDS:=+kmod-i2c-algo-bit
   FILES:= \
 	  $(PKG_BUILD_DIR)/media_build/v4l/*.ko
 endef
@@ -31,9 +32,9 @@ define Build/Compile
 	cp files/DVB_SAA716X_TBS.config $(PKG_BUILD_DIR)/media_build/v4l/.config
 	cd $(PKG_BUILD_DIR)/media_build && \
 	unset TOPDIR && \
-	$(MAKE) release DIR=$(KERNEL_BUILD_DIR)/linux-4.9.67 && \
+	$(MAKE) release DIR=$(KERNEL_BUILD_DIR)/linux-4.14.63/ && \
 	$(MAKE) dir DIR=../media && \
-	$(MAKE) -j10 CROSS_COMPILE=mipsel-openwrt-linux-musl- ARCH=mips CONFIG_DVB_SAA716X_BUDGET=m
+	$(MAKE) -j10 CROSS_COMPILE=mipsel-openwrt-linux-musl- ARCH=mips
 endef
 
 define KernelPackage/ljalves-media/install

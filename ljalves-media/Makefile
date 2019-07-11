@@ -32,7 +32,7 @@ define Build/Compile
 	cp files/DVB_SAA716X_TBS.config $(PKG_BUILD_DIR)/media_build/v4l/.config
 	cd $(PKG_BUILD_DIR)/media_build && \
 	unset TOPDIR && \
-	$(MAKE) release DIR=$(KERNEL_BUILD_DIR)/linux-4.14.63/ && \
+	$(MAKE) release DIR=$(LINUX_DIR) && \
 	$(MAKE) dir DIR=../media && \
 	$(MAKE) -j10 CROSS_COMPILE=mipsel-openwrt-linux-musl- ARCH=mips
 endef

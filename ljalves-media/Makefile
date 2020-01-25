@@ -34,7 +34,7 @@ define Build/Compile
 	unset TOPDIR && \
 	$(MAKE) release DIR=$(LINUX_DIR) && \
 	$(MAKE) dir DIR=../media && \
-	$(MAKE) -j10 CROSS_COMPILE=mipsel-openwrt-linux-musl- ARCH=mips
+	$(MAKE) -j10 CROSS_COMPILE=$$$${TARGET_CC_NOCACHE::$$$${#TARGET_CC_NOCACHE}-3} ARCH=mips
 endef
 
 define KernelPackage/ljalves-media/install
